@@ -1,8 +1,7 @@
-import 'dart:convert';
+// provider/recipeProvider.dart
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-
 import '../model/recipe.dart';
+import '../service/recipeService.dart';
 
 class RecipeProvider extends ChangeNotifier {
   List<Recipe> _recipes = [];
@@ -10,15 +9,16 @@ class RecipeProvider extends ChangeNotifier {
 
   List<Recipe> get recipes => _filteredRecipes.isNotEmpty ? _filteredRecipes : _recipes;
 
+  final RecipeService _recipeService = RecipeService();
+
   Future<void> fetchRecipes() async {
-    final response = await http.get(Uri.parse('https://dummyjson.com/recipes'));
-    if (response.statusCode == 200) {
-      Recepie recepie = recepieFromJson(response.body);
+    try {
+      Recepie recepie = await _recipeService.fetchRecipes();
       _recipes = recepie.recipes ?? [];
       _filteredRecipes = _recipes; // Initialize filtered recipes with all recipes
       notifyListeners();
-    } else {
-      throw Exception('Failed to load recipes');
+    } catch (e) {
+      throw Exception('Failed to load recipes: $e');
     }
   }
 

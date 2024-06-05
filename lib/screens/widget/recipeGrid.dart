@@ -41,7 +41,7 @@ class RecipeGridView extends StatelessWidget {
                     height: maxWidth / crossAxisCount * 0.6,
                     width: double.infinity,
                     child: ClipRRect(
-                      borderRadius: const BorderRadius.only(
+                      borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(4.0),
                         topRight: Radius.circular(4.0),
                       ),
