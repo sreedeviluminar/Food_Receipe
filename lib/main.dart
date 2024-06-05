@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:foodreceipe/provider/recipeProvider.dart';
 import 'package:foodreceipe/screens/home.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
-void main() {
-  runApp(MyApp());
+void main(){
+  runApp(MyApp1());
 }
-
-class MyApp extends StatelessWidget {
+class MyApp1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
