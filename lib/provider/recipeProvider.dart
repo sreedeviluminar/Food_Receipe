@@ -9,11 +9,9 @@ class RecipeProvider extends ChangeNotifier {
 
   List<Recipe> get recipes => _filteredRecipes.isNotEmpty ? _filteredRecipes : _recipes;
 
-  final RecipeService _recipeService = RecipeService();
-
   Future<void> fetchRecipes() async {
     try {
-      Recepie recepie = await _recipeService.fetchRecipes();
+      Recepie recepie = await RecipeService().fetchRecipes();
       _recipes = recepie.recipes ?? [];
       _filteredRecipes = _recipes; // Initialize filtered recipes with all recipes
       notifyListeners();
